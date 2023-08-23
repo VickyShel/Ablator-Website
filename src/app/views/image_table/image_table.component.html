@@ -1,0 +1,38 @@
+<c-row>
+    <c-col md="1"></c-col>
+    <c-col md="10">
+        <button style="border:none"  (click)="openPage()"><svg cIcon name="cilChevronCircleLeftAlt" size="xl" title="Numbered List Icon"></svg> Back</button>
+        <c-card>
+            <c-card-header>
+                Result Dynamic Change Demonstration
+            </c-card-header>
+            <c-card-body>
+                <table style="display: flex;justify-content: center; /* 水平居中 */align-items: center; /* 垂直居中 */">
+                    <tbody>
+                    <tr *ngFor="let img of images; let i=index">
+                        <td height="80px">
+                            <img src="{{img[0]}}" style="width:100%;height:100%;object-fit: cover;">
+                        </td>
+                        <td height="80px">
+                            <img src="{{img[1]}}" style="width:100%;height:100%;object-fit: cover;">
+                        </td>
+                        <td height="80px">
+                            <img src="{{img[2]}}" style="width:100%;height:100%;object-fit: cover;">
+                        </td>
+                        <td height="80px">
+                            <img src="{{img[3]}}" style="width:100%;height:100%;object-fit: cover;">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <c-container style="width: 90%;margin-left: 5%">
+                    Set Epoch Value
+                </c-container>
+                <div class="custom-slider" style="display: flex;justify-content: center;">
+                    <ngx-slider [(value)]="minValue" [options]="options" (valueChange)="changeStart($event)" style="margin-top: 5%;margin-bottom: 5%;width: 50%"></ngx-slider>
+                </div>
+            </c-card-body>
+
+        </c-card>
+    </c-col>
+</c-row>

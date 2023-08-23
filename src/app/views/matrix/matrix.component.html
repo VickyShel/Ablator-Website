@@ -1,0 +1,244 @@
+<c-row>
+    <c-col md="1">
+    </c-col>
+    <c-col md="10">
+        <c-accordion [alwaysOpen]="true" style="margin-bottom: 5%">
+            <button style="border:none"  (click)="openPage()"><svg cIcon name="cilChevronCircleLeftAlt" size="xl" title="Numbered List Icon"></svg> Back</button>
+
+            <c-accordion-item #item0="cAccordionItem" [visible]="true">
+                <ng-template cTemplateId="accordionHeaderTemplate">
+                    <button (click)="item0.toggleItem()"  [collapsed]="!item0.visible" cAccordionButton>
+                        Trial 1
+                    </button>
+                </ng-template>
+                <ng-template cTemplateId="accordionBodyTemplate" >
+                    <table style="display: inline-flex;justify-content: center; /* 水平居中 */align-items: center; /* 垂直居中 */" cTable>
+                        <thead>
+                        <tr style="font-size: small;">
+                            Actual Data
+                        </tr>
+                        </thead>
+                        <tbody *ngFor="let matrix_data of matrix_data_trial; let i = index">
+                        <tr style="display: flex;justify-content: center; /* 水平居中 */align-items: center; /* 垂直居中 */;font-size: small;margin-top: 20px">
+                            Predicted Data
+                        </tr>
+                        <tr style="display: flex;justify-content: center; /* 水平居中 */align-items: center; /* 垂直居中 */;">
+                            <th style="width: 80px;height: 60px;align-items: center;justify-content: center;display:inline-flex;">
+
+                            </th>
+                            <th style="width: 80px;height: 60px;align-items: center;justify-content: center;display:inline-flex;">
+                                Cat
+                            </th>
+                            <th style="width: 80px;height: 60px;align-items: center;justify-content: center;display:inline-flex;">
+                                Dog
+                            </th>
+                            <th style="width: 80px;height: 60px;align-items: center;justify-content: center;display:inline-flex;">
+                                Fox
+                            </th>
+                        </tr>
+                        <tr>
+                            <th style="width: 80px;height: 80px;align-items: center;justify-content: center;display:inline-flex;border: none">
+                                Cat
+                            </th>
+                            <td style="width: 80px;height: 80px;align-items: center;justify-content: center;display:inline-flex;background-color: rgba(180,147,244,0.53)"  >
+                                {{matrix_data[0]}}
+                            </td>
+                            <td style="width: 80px;height: 80px;align-items: center;justify-content: center;display:inline-flex">
+                                {{matrix_data[1]}}
+                            </td>
+                            <td style="width: 80px;height: 80px;align-items: center;justify-content: center;display:inline-flex">
+                                {{matrix_data[2]}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="width: 80px;height: 80px;align-items: center;justify-content: center;display:inline-flex;border: none">
+                                Dog
+                            </th>
+                            <td style="width: 80px;height: 80px;align-items: center;justify-content: center;display:inline-flex" >
+                                {{matrix_data[3]}}
+                            </td>
+                            <td style="width: 80px;height: 80px;align-items: center;justify-content: center;display:inline-flex;background-color: rgba(180,147,244,0.53)">
+                                {{matrix_data[4]}}
+                            </td>
+                            <td style="width: 80px;height: 80px;align-items: center;justify-content: center;display:inline-flex">
+                                {{matrix_data[5]}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="width: 80px;height: 80px;align-items: center;justify-content: center;display:inline-flex;border: none">
+                                Fox
+                            </th>
+                            <td style="width: 80px;height: 80px;align-items: center;justify-content: center;display:inline-flex" >
+                                {{matrix_data[6]}}
+                            </td>
+                            <td style="width: 80px;height: 80px;align-items: center;justify-content: center;display:inline-flex">
+                                {{matrix_data[7]}}
+                            </td>
+                            <td style="width: 80px;height: 80px;align-items: center;justify-content: center;display:inline-flex;background-color: rgba(180,147,244,0.53)">
+                                {{matrix_data[8]}}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <c-card style="margin-left: 5%; margin-right:5%;margin-top: 5%;margin-bottom: 5%">
+                        <c-card-header>
+                            Set Epoch Value
+                        </c-card-header>
+                        <c-card-body>
+                            <div class="custom-slider" style="display: flex;justify-content: center;">
+                                <ngx-slider [options]="options" (valueChange)="changeStart_1($event)" style="margin-top: 5%;margin-bottom: 5%;width: 50%"></ngx-slider>
+                            </div>
+                            <table bordered cTable  style="margin-left: 5%; margin-right:5%;margin-bottom: 5%;width: 90%">
+                                <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">Precision</th>
+                                    <th scope="col">Recall</th>
+                                    <th scope="col">F1-score</th>
+                                </tr>
+                                </thead>
+                                <tbody *ngFor="let dataset of relevant_value; let i = index">
+                                    <tr>
+                                        <th scope="row">Cat</th>
+                                        <td>{{dataset[0]}}</td>
+                                        <td>{{dataset[1]}}</td>
+                                        <td>{{dataset[2]}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Dog</th>
+                                        <td>{{dataset[3]}}</td>
+                                        <td>{{dataset[4]}}</td>
+                                        <td>{{dataset[5]}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Fox</th>
+                                        <td>{{dataset[6]}}</td>
+                                        <td>{{dataset[7]}}</td>
+                                        <td>{{dataset[8]}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </c-card-body>
+                    </c-card>
+                </ng-template>
+            </c-accordion-item>
+            <c-accordion-item #item1="cAccordionItem" [visible]="false">
+                <ng-template cTemplateId="accordionHeaderTemplate">
+                    <button (click)="item1.toggleItem()"  [collapsed]="!item1.visible" cAccordionButton>
+                        Trial 2
+                    </button>
+                </ng-template>
+                <ng-template cTemplateId="accordionBodyTemplate" >
+                    <table style="display: inline-flex;justify-content: center; /* 水平居中 */align-items: center; /* 垂直居中 */" cTable>
+                        <thead>
+                        <tr style="font-size: small;">
+                            Actual Data
+                        </tr>
+                        </thead>
+                        <tbody *ngFor="let matrix_data of matrix_data_trial_2; let i = index">
+                        <tr style="display: flex;justify-content: center; /* 水平居中 */align-items: center; /* 垂直居中 */;font-size: small;margin-top: 20px">
+                            Predicted Data
+                        </tr>
+                        <tr style="display: flex;justify-content: center; /* 水平居中 */align-items: center; /* 垂直居中 */;">
+                            <th style="width: 80px;height: 60px;align-items: center;justify-content: center;display:inline-flex;">
+
+                            </th>
+                            <th style="width: 80px;height: 60px;align-items: center;justify-content: center;display:inline-flex;">
+                                Cat
+                            </th>
+                            <th style="width: 80px;height: 60px;align-items: center;justify-content: center;display:inline-flex;">
+                                Dog
+                            </th>
+                            <th style="width: 80px;height: 60px;align-items: center;justify-content: center;display:inline-flex;">
+                                Fox
+                            </th>
+                        </tr>
+                        <tr>
+                            <th style="width: 80px;height: 80px;align-items: center;justify-content: center;display:inline-flex;border: none">
+                                Cat
+                            </th>
+                            <td style="width: 80px;height: 80px;align-items: center;justify-content: center;display:inline-flex;background-color: rgba(180,147,244,0.53)"  >
+                                {{matrix_data[0]}}
+                            </td>
+                            <td style="width: 80px;height: 80px;align-items: center;justify-content: center;display:inline-flex">
+                                {{matrix_data[1]}}
+                            </td>
+                            <td style="width: 80px;height: 80px;align-items: center;justify-content: center;display:inline-flex">
+                                {{matrix_data[2]}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="width: 80px;height: 80px;align-items: center;justify-content: center;display:inline-flex;border: none">
+                                Dog
+                            </th>
+                            <td style="width: 80px;height: 80px;align-items: center;justify-content: center;display:inline-flex" >
+                                {{matrix_data[3]}}
+                            </td>
+                            <td style="width: 80px;height: 80px;align-items: center;justify-content: center;display:inline-flex;background-color: rgba(180,147,244,0.53)">
+                                {{matrix_data[4]}}
+                            </td>
+                            <td style="width: 80px;height: 80px;align-items: center;justify-content: center;display:inline-flex">
+                                {{matrix_data[5]}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="width: 80px;height: 80px;align-items: center;justify-content: center;display:inline-flex;border: none">
+                                Fox
+                            </th>
+                            <td style="width: 80px;height: 80px;align-items: center;justify-content: center;display:inline-flex" >
+                                {{matrix_data[6]}}
+                            </td>
+                            <td style="width: 80px;height: 80px;align-items: center;justify-content: center;display:inline-flex">
+                                {{matrix_data[7]}}
+                            </td>
+                            <td style="width: 80px;height: 80px;align-items: center;justify-content: center;display:inline-flex;background-color: rgba(180,147,244,0.53)">
+                                {{matrix_data[8]}}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <c-card style="margin-left: 5%; margin-right:5%;margin-top: 5%;margin-bottom: 5%">
+                        <c-card-header>
+                            Set Epoch Value
+                        </c-card-header>
+                        <c-card-body>
+                            <div class="custom-slider" style="display: flex;justify-content: center;">
+                                <ngx-slider [options]="options" (valueChange)="changeStart_2($event)" style="margin-top: 5%;margin-bottom: 5%;width: 50%"></ngx-slider>
+                            </div>
+                            <table bordered cTable  style="margin-left: 5%; margin-right:5%;margin-bottom: 5%;width: 90%">
+                                <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">Precision</th>
+                                    <th scope="col">Recall</th>
+                                    <th scope="col">F1-score</th>
+                                </tr>
+                                </thead>
+                                <tbody *ngFor="let dataset of relevant_value_2; let i = index">
+                                <tr>
+                                    <th scope="row">Cat</th>
+                                    <td>{{dataset[0]}}</td>
+                                    <td>{{dataset[1]}}</td>
+                                    <td>{{dataset[2]}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Dog</th>
+                                    <td>{{dataset[3]}}</td>
+                                    <td>{{dataset[4]}}</td>
+                                    <td>{{dataset[5]}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Fox</th>
+                                    <td>{{dataset[6]}}</td>
+                                    <td>{{dataset[7]}}</td>
+                                    <td>{{dataset[8]}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </c-card-body>
+                    </c-card>
+                </ng-template>
+            </c-accordion-item>
+        </c-accordion>
+    </c-col>
+</c-row>

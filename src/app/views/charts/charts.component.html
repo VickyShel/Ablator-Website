@@ -1,0 +1,169 @@
+
+<c-row>
+    <c-col md="1">
+    </c-col>
+  <c-col md="10">
+      <c-accordion [alwaysOpen]="true"  style="margin-bottom: 5%">
+          <button style="border:none"  (click)="openPage()"><svg cIcon name="cilChevronCircleLeftAlt" size="xl" title="Numbered List Icon"></svg> Back</button>
+
+          <c-accordion-item #item0="cAccordionItem" [visible]="true">
+              <ng-template cTemplateId="accordionHeaderTemplate">
+                  <button (click)="item0.toggleItem()"  [collapsed]="!item0.visible" cAccordionButton>
+                      Train Loss Chart
+                  </button>
+              </ng-template>
+              <ng-template cTemplateId="accordionBodyTemplate" >
+<!--                  <c-card style="margin-left: 5%;margin-right:5%;margin-top: 5%">-->
+                      <!--      <c-chart type="line" [data]="chartData"></c-chart>-->
+                      <c-chart type="line" [data]="chartData" [options]="chartOption" style="margin-left: 5%;margin-right:5%;margin-top: 5%"> </c-chart>
+<!--                  </c-card>-->
+                  <c-card style="margin-left: 5%; margin-right:5%;margin-top: 5%;margin-bottom: 5%">
+                      <c-card-header>Set Epoch Range</c-card-header>
+                      <div class="custom-slider" style="margin-left: 5%; margin-right:5%;margin-top: 5%;margin-bottom: 5%">
+                          <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options" (valueChange)="changeStart($event)" (highValueChange)="changeEnd($event)"></ngx-slider>
+                      </div>
+                      <table bordered cTable  style="margin-left: 5%; margin-right:5%;margin-bottom: 5%;width: 90%">
+                          <thead>
+                          <tr>
+                              <th scope="col"></th>
+                              <th scope="col">Epoch {{start}}</th>
+                              <th scope="col">Epoch {{end}}</th>
+                              <th scope="col">Change Value</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr *ngFor="let dataset of chartData.datasets; let i = index">
+                              <th scope="row">Trial {{i+1}}</th>
+                              <!--              <ng-container *ngFor="let item of dataset.data; let j = index">-->
+                              <!--                  <ng-container *ngIf="j === start-1">-->
+                              <!--                  </ng-container>-->
+                              <!--              </ng-container>-->
+                              <!--              <ng-container *ngFor="let item of dataset.data; let j = index">-->
+                              <!--                  <ng-container *ngIf="j === end-1">-->
+                              <!--                      <td>{{item}}</td>-->
+                              <!--                  </ng-container>-->
+                              <!--              </ng-container>-->
+                              <td>{{dataset.data[start-1]}}</td>
+                              <td>{{dataset.data[end-1]}}</td>
+                              <td>{{dataset.data[end-1]-dataset.data[start-1]}}</td>
+                          </tr>
+                          </tbody>
+                      </table>
+                  </c-card>
+              </ng-template>
+          </c-accordion-item>
+          <c-accordion-item #item1="cAccordionItem" [visible]="false">
+              <ng-template cTemplateId="accordionHeaderTemplate">
+                  <button (click)="item1.toggleItem()"  [collapsed]="!item1.visible" cAccordionButton>
+                      Train Accuracy Chart
+                  </button>
+              </ng-template>
+              <ng-template cTemplateId="accordionBodyTemplate">
+                  <c-chart type="line" [data]="chartData2" [options]="chartOption2" style="margin-left: 5%;margin-right:5%;margin-top: 5%"> </c-chart>
+
+                  <c-card style="margin-left: 5%; margin-right:5%;margin-top: 5%;margin-bottom: 5%">
+                      <c-card-header>Set Epoch Range</c-card-header>
+                      <div class="custom-slider" style="margin-left: 5%; margin-right:5%;margin-top: 5%;margin-bottom: 5%">
+                          <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options" (valueChange)="changeStart2($event)" (highValueChange)="changeEnd2($event)"></ngx-slider>
+                      </div>
+                      <table bordered cTable  style="margin-left: 5%; margin-right:5%;margin-bottom: 5%;width: 90%">
+                          <thead>
+                          <tr>
+                              <th scope="col"></th>
+                              <th scope="col">Epoch {{start2}}</th>
+                              <th scope="col">Epoch {{end2}}</th>
+                              <th scope="col">Change Value</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr *ngFor="let dataset of chartData2.datasets; let i = index">
+                              <th scope="row">Trial {{i+1}}</th>
+                              <!--              <ng-container *ngFor="let item of dataset.data; let j = index">-->
+                              <!--                  <ng-container *ngIf="j === start-1">-->
+                              <!--                  </ng-container>-->
+                              <!--              </ng-container>-->
+                              <!--              <ng-container *ngFor="let item of dataset.data; let j = index">-->
+                              <!--                  <ng-container *ngIf="j === end-1">-->
+                              <!--                      <td>{{item}}</td>-->
+                              <!--                  </ng-container>-->
+                              <!--              </ng-container>-->
+                              <td>{{dataset.data[start2-1]}}</td>
+                              <td>{{dataset.data[end2-1]}}</td>
+                              <td>{{dataset.data[end2-1]-dataset.data[start2-1]}}</td>
+                          </tr>
+                          </tbody>
+                      </table>
+                  </c-card>
+              </ng-template>
+          </c-accordion-item>
+          <c-accordion-item #item2="cAccordionItem" [visible]="false">
+              <ng-template cTemplateId="accordionHeaderTemplate">
+                  <button  (click)="item2.toggleItem()"   [collapsed]="!item2.visible" cAccordionButton>
+                      Best Iteration Chart
+                  </button>
+              </ng-template>
+              <ng-template cTemplateId="accordionBodyTemplate">
+                  <c-chart type="line" [data]="chartLineData" [options]="chartOption3" style="margin-left: 5%;margin-right:5%;margin-top: 5%"> </c-chart>
+
+                  <c-card style="margin-left: 5%; margin-right:5%;margin-top: 5%;margin-bottom: 5%">
+                      <c-card-header>Set Epoch Range</c-card-header>
+                      <div class="custom-slider" style="margin-left: 5%; margin-right:5%;margin-top: 5%;margin-bottom: 5%">
+                          <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options" (valueChange)="changeStart3($event)" (highValueChange)="changeEnd3($event)"></ngx-slider>
+                      </div>
+                      <table bordered cTable  style="margin-left: 5%; margin-right:5%;margin-bottom: 5%;width: 90%">
+                          <thead>
+                          <tr>
+                              <th scope="col"></th>
+                              <th scope="col">Epoch {{start3}}</th>
+                              <th scope="col">Epoch {{end3}}</th>
+                              <th scope="col">Change Value</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr *ngFor="let dataset of chartLineData.datasets; let i = index">
+                              <th scope="row">Trial {{i+1}}</th>
+                              <!--              <ng-container *ngFor="let item of dataset.data; let j = index">-->
+                              <!--                  <ng-container *ngIf="j === start-1">-->
+                              <!--                  </ng-container>-->
+                              <!--              </ng-container>-->
+                              <!--              <ng-container *ngFor="let item of dataset.data; let j = index">-->
+                              <!--                  <ng-container *ngIf="j === end-1">-->
+                              <!--                      <td>{{item}}</td>-->
+                              <!--                  </ng-container>-->
+                              <!--              </ng-container>-->
+                              <td>{{dataset.data[start3-1]}}</td>
+                              <td>{{dataset.data[end3-1]}}</td>
+                              <td>{{dataset.data[end3-1]-dataset.data[start3-1]}}</td>
+                          </tr>
+                          </tbody>
+                      </table>
+                  </c-card>
+              </ng-template>
+          </c-accordion-item>
+      </c-accordion>
+  </c-col>
+
+    <c-col md="1">
+
+    </c-col>
+</c-row>
+
+<!--  <c-row *ngFor="let chart of charts_bind ;let i = index">-->
+<!--    <c-card class="mb-4">-->
+<!--      <c-card-header>-->
+<!--        {{labels[i]}}-->
+<!--      </c-card-header>-->
+<!--      <c-card-body>-->
+<!--&lt;!&ndash;        <c-chart type="line" [data]="chart" [options]="chartOption"></c-chart>&ndash;&gt;-->
+<!--      </c-card-body>-->
+<!--    </c-card>-->
+<!--&lt;!&ndash;    <c-col xs="12">&ndash;&gt;-->
+<!--&lt;!&ndash;      <app-docs-callout href="charts">&ndash;&gt;-->
+<!--&lt;!&ndash;        Angular wrapper component for Chart.js 3.6, the most popular charting library.&ndash;&gt;-->
+<!--&lt;!&ndash;        <br>&ndash;&gt;-->
+<!--&lt;!&ndash;      </app-docs-callout>&ndash;&gt;-->
+<!--&lt;!&ndash;    </c-col>&ndash;&gt;-->
+
+<!--  </c-row>-->
+
+<!--<button (click)="onFilePondUpload()">Upload</button>-->

@@ -1,0 +1,34 @@
+<h2>Customize your charts!</h2>
+<c-row class="align-items-center">
+    <c-col md="5">
+        <ngx-codemirror [(ngModel)]="content" [options]="{
+            lineNumbers: true,
+            theme: 'xq-light',
+            mode: 'javascript'
+            }" [ngModelOptions]="{ standalone: true }" id="codemirror" (ngModelChange)="handleChange($event)">
+        </ngx-codemirror>
+    </c-col>
+    <c-col md="6">
+        <c-card>
+            <c-card-body>
+                <c-row style="margin-bottom: 5%">
+                    <c-col md="10">
+
+                    </c-col>
+                    <c-col md="2">
+                        <button cButton class="float-end" color="primary" style="width: auto" (click)="saveImg()">
+                            <svg cIcon name="cilCloudDownload"></svg>
+                        </button>
+                    </c-col>
+                </c-row>
+                <c-card>
+                    <c-card-body>
+                        <c-chart type="line" [data]="chartLineData"></c-chart>
+                    </c-card-body>
+                </c-card>
+            </c-card-body>
+        </c-card>
+    </c-col>
+</c-row>
+
+

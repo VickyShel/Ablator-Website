@@ -1,0 +1,197 @@
+<c-row>
+    <c-col md="3">
+        <c-widget-stat-a
+                [title]="'2023.8.20'"
+                class="mb-4"
+                text="Lorem ipsum dolor sit amet enim."
+                value="Simple Experiment"
+                (click)="openChartsPage()"
+        >
+            <!--            <br><br><br>-->
+            <!--            <c-progress class="my-2" thin>-->
+            <!--                <c-progress-bar [value]="75.9" color="success"></c-progress-bar>-->
+            <!--            </c-progress>-->
+            <br>
+            <ng-template cTemplateId="widgetChartTemplate">
+                <c-chart [data]="chartData" [options]="option" class="mt-2 mx-2" height="110" type="line"></c-chart>
+            </ng-template>
+            <br>
+        </c-widget-stat-a>
+    </c-col>
+    <c-col md="3">
+        <c-widget-stat-a
+                [title]="'2023.8.20'"
+                class="mb-4"
+                text="Lorem ipsum dolor sit amet enim."
+                value="Pics Generation"
+                (click)="openImage_tablePage()"
+        >
+            <!--            <br><br><br>-->
+            <!--            <c-progress class="my-2" thin>-->
+            <!--                <c-progress-bar [value]="75.9" color="success"></c-progress-bar>-->
+            <!--            </c-progress>-->
+            <br>
+            <ng-template cTemplateId="widgetChartTemplate">
+                <table style="display: flex;justify-content: center; /* 水平居中 */align-items: center; /* 垂直居中 */">
+                    <tbody style="margin-top: 5%;margin-bottom: 5%">
+                    <tr *ngFor="let img of image_files_1; let i=index">
+                        <td height="30px">
+                            <img src="{{img[0]}}" style="width:100%;height:100%;object-fit: cover;">
+                        </td>
+                        <td height="30px">
+                            <img src="{{img[1]}}" style="width:100%;height:100%;object-fit: cover;">
+                        </td>
+                        <td height="30px">
+                            <img src="{{img[2]}}" style="width:100%;height:100%;object-fit: cover;">
+                        </td>
+                        <td height="30px">
+                            <img src="{{img[3]}}" style="width:100%;height:100%;object-fit: cover;">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </ng-template>
+            <br>
+        </c-widget-stat-a>
+    </c-col>
+    <c-col md="3">
+        <c-widget-stat-a
+                [title]="'2023.8.20'"
+                class="mb-4"
+                text="Lorem ipsum dolor sit amet enim."
+                value="Confusion Matrix"
+                (click)="openMatrixPage()"
+
+        >
+            <!--            <br><br><br>-->
+            <!--            <c-progress class="my-2" thin>-->
+            <!--                <c-progress-bar [value]="75.9" color="success"></c-progress-bar>-->
+            <!--            </c-progress>-->
+            <br>
+            <ng-template cTemplateId="widgetChartTemplate">
+                <table style="display: inline-flex;justify-content: center; /* 水平居中 */align-items: center; /* 垂直居中 */" cTable>
+<!--                    <thead>-->
+<!--                    <tr style="font-size: small;">-->
+<!--                        Actual Data-->
+<!--                    </tr>-->
+<!--                    </thead>-->
+                    <tbody *ngFor="let matrix_data of matrix_data_trial; let i = index">
+<!--                    <tr style="display: flex;justify-content: center; /* 水平居中 */align-items: center; /* 垂直居中 */;">-->
+<!--                        <th style="width: 50px;height: 60px;align-items: center;justify-content: center;display:inline-flex;">-->
+
+<!--                        </th>-->
+<!--                        <th style="width: 50px;height: 60px;align-items: center;justify-content: center;display:inline-flex;">-->
+<!--                            Cat-->
+<!--                        </th>-->
+<!--                        <th style="width: 50px;height: 60px;align-items: center;justify-content: center;display:inline-flex;">-->
+<!--                            Dog-->
+<!--                        </th>-->
+<!--                        <th style="width: 50px;height: 60px;align-items: center;justify-content: center;display:inline-flex;">-->
+<!--                            Fox-->
+<!--                        </th>-->
+<!--                    </tr>-->
+                    <tr>
+<!--                        <th style="width: 50px;height: 50px;align-items: center;justify-content: center;display:inline-flex;border: none">-->
+<!--                            Cat-->
+<!--                        </th>-->
+                        <td style="width: 50px;height: 50px;align-items: center;justify-content: center;display:inline-flex;background-color: rgba(150,147,244,0.53)"  >
+                            {{matrix_data[0]}}
+                        </td>
+                        <td style="width: 50px;height: 50px;align-items: center;justify-content: center;display:inline-flex">
+                            {{matrix_data[1]}}
+                        </td>
+                        <td style="width: 50px;height: 50px;align-items: center;justify-content: center;display:inline-flex">
+                            {{matrix_data[2]}}
+                        </td>
+                    </tr>
+                    <tr>
+<!--                        <th style="width: 50px;height: 50px;align-items: center;justify-content: center;display:inline-flex;border: none">-->
+<!--                            Dog-->
+<!--                        </th>-->
+                        <td style="width: 50px;height: 50px;align-items: center;justify-content: center;display:inline-flex" >
+                            {{matrix_data[3]}}
+                        </td>
+                        <td style="width: 50px;height: 50px;align-items: center;justify-content: center;display:inline-flex;background-color: rgba(150,147,244,0.53)">
+                            {{matrix_data[4]}}
+                        </td>
+                        <td style="width: 50px;height: 50px;align-items: center;justify-content: center;display:inline-flex">
+                            {{matrix_data[5]}}
+                        </td>
+                    </tr>
+                    <tr>
+<!--                        <th style="width: 50px;height: 50px;align-items: center;justify-content: center;display:inline-flex;border: none">-->
+<!--                            Fox-->
+<!--                        </th>-->
+                        <td style="width: 50px;height: 50px;align-items: center;justify-content: center;display:inline-flex" >
+                            {{matrix_data[6]}}
+                        </td>
+                        <td style="width: 50px;height: 50px;align-items: center;justify-content: center;display:inline-flex">
+                            {{matrix_data[7]}}
+                        </td>
+                        <td style="width: 50px;height: 50px;align-items: center;justify-content: center;display:inline-flex;background-color: rgba(150,147,244,0.53)">
+                            {{matrix_data[8]}}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </ng-template>
+            <br>
+        </c-widget-stat-a>
+    </c-col>
+<!--    <c-col md="3">-->
+<!--        <c-widget-stat-a-->
+<!--                [title]="'2023.8.20'"-->
+<!--                class="mb-4"-->
+<!--                text="Lorem ipsum dolor sit amet enim."-->
+<!--                value="Experiment 1"-->
+<!--        >-->
+<!--            &lt;!&ndash;            <br><br><br>&ndash;&gt;-->
+<!--            &lt;!&ndash;            <c-progress class="my-2" thin>&ndash;&gt;-->
+<!--            &lt;!&ndash;                <c-progress-bar [value]="75.9" color="success"></c-progress-bar>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </c-progress>&ndash;&gt;-->
+<!--            <br>-->
+<!--            <ng-template cTemplateId="widgetChartTemplate">-->
+<!--                <c-chart [data]="chartLineData" [options]="option" class="mt-2 mx-2" height="110" type="line"></c-chart>-->
+<!--            </ng-template>-->
+<!--            <br>-->
+<!--        </c-widget-stat-a>-->
+<!--    </c-col>-->
+</c-row>
+<!--<c-row>-->
+<!--    <c-col md="3">-->
+<!--        <c-widget-stat-a-->
+<!--                [title]="'2023.8.20'"-->
+<!--                class="mb-4"-->
+<!--                text="Lorem ipsum dolor sit amet enim."-->
+<!--                value="Experiment 1"-->
+<!--        >-->
+<!--            &lt;!&ndash;            <br><br><br>&ndash;&gt;-->
+<!--            &lt;!&ndash;            <c-progress class="my-2" thin>&ndash;&gt;-->
+<!--            &lt;!&ndash;                <c-progress-bar [value]="75.9" color="success"></c-progress-bar>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </c-progress>&ndash;&gt;-->
+<!--            <br>-->
+<!--            <ng-template cTemplateId="widgetChartTemplate">-->
+<!--                <c-chart [data]="chartData" [options]="option" class="mt-2 mx-2" height="110" type="line"></c-chart>-->
+<!--            </ng-template>-->
+<!--            <br>-->
+<!--        </c-widget-stat-a>-->
+<!--    </c-col>-->
+<!--    <c-col md="3">-->
+<!--        <c-widget-stat-a-->
+<!--                [title]="'2023.8.20'"-->
+<!--                class="mb-4"-->
+<!--                text="Lorem ipsum dolor sit amet enim."-->
+<!--                value="Experiment 1"-->
+<!--        >-->
+<!--            &lt;!&ndash;            <br><br><br>&ndash;&gt;-->
+<!--            &lt;!&ndash;            <c-progress class="my-2" thin>&ndash;&gt;-->
+<!--            &lt;!&ndash;                <c-progress-bar [value]="75.9" color="success"></c-progress-bar>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </c-progress>&ndash;&gt;-->
+<!--            <br>-->
+<!--            <ng-template cTemplateId="widgetChartTemplate">-->
+<!--                <c-chart [data]="chartData2" [options]="option" class="mt-2 mx-2" height="110" type="line"></c-chart>-->
+<!--            </ng-template>-->
+<!--            <br>-->
+<!--        </c-widget-stat-a>-->
+<!--    </c-col>-->
+<!--</c-row>-->
