@@ -13,7 +13,7 @@ import { DefaultLayoutComponent } from './containers';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'customize',
+    redirectTo: 'history',
     pathMatch: 'full'
   },
   {
